@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <permission
+        android:name="com.example.aidldemo.permission.BIND_CALC_SERVICE"
+        android:protectionLevel="normal" />
+
+    <application
+        android:label="AIDL Java App">
+        <activity android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 🧠 서비스 등록 -->
+        <service
+            android:name=".CalcService"
+            android:exported="true"
+            android:permission="com.example.aidldemo.permission.BIND_CALC_SERVICE">
+
+            <intent-filter>
+                <action android:name="com.example.aidldemo.CalcService" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
