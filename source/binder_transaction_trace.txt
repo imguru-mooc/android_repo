@@ -1,0 +1,18 @@
+adb root
+adb shell
+
+기존 필터 비우기
+# echo > /sys/kernel/tracing/set_event_pid
+
+단일 PID
+# echo $PID > /sys/kernel/tracing/set_event_pid
+
+여러 PID (줄바꿈으로 추가)
+# echo 1234 5678 > /sys/kernel/tracing/set_event_pid
+
+보고 싶은 이벤트만 ON (예: binder 전부)
+# echo 1 > /sys/kernel/tracing/events/binder/enable
+
+실시간 보기
+# echo 1 > /sys/kernel/tracing/tracing_on
+# cat /sys/kernel/tracing/trace_pipe

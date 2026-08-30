@@ -1,0 +1,32 @@
+JAVA 버전 선택
+sudo update-alternatives --config java
+
+FIRST 예제 빌드 및 실행 
+javac -h . Hello.java
+g++ -fPIC -c Hello.c -I/usr/lib/jvm/java-11-openjdk-amd64/include/ -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux/
+g++ Hello.o -shared -o libHello.so
+java -Djava.library.path=. Hello
+
+SECOND 예제 빌드 및 실행 
+javac -h . JniFuncMain.java
+mv JniFuncMain.h jnifunc.h
+g++ -fPIC -c jnifunc.cpp -I/usr/lib/jvm/java-11-openjdk-amd64/include/ -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux/
+g++ -shared jnifunc.o -o libjnifunc.so
+java -Djava.library.path=. JniFuncMain
+
+Third 예제 빌드 및 실행 
+javac -h . JniFuncMain.java
+mv JniFuncMain.h foo.h
+vi foo.h 에서 함수이름을 foo로 교체 
+g++ -fPIC -c foo.cpp -I/usr/lib/jvm/java-11-openjdk-amd64/include/ -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux/
+g++ -shared foo.o -o libjnimap.so
+java -Djava.library.path=. JniFuncMain
+
+Fourth 예제 빌드 및 실행 
+javac --release 11 JniFuncMain.java
+g++ invocation.cpp -I/usr/lib/jvm/java-11-openjdk-amd64/include/ -I/usr/lib/jvm/java-11-openjdk-amd64/include/linux/ -L/usr/lib/jvm/java-11-openjdk-amd64/lib/server/ -ljvm
+export LD_LIBRARY_PATH=/usr/lib/jvm/java-11-openjdk-amd64/lib/server/
+./a.out
+
+
+
