@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.rrooverlay">
+
+    <application
+        android:hasCode="false"
+        android:label="RRO Overlay">
+    </application>
+
+    <overlay
+        android:targetPackage="com.example.rrotarget"
+        android:targetName="RROTargetTheme"
+        android:priority="1"
+        android:isStatic="false" />
+</manifest>
