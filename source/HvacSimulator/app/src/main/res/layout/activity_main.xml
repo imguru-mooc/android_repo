@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#202124"
+    android:padding="16dp">
+
+    <!-- 온도 조절 영역 (좌우 분할) -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <!-- 왼쪽 온도 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/temp_up_left"
+                android:text="+"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:elevation="4dp" />
+
+            <TextView
+                android:id="@+id/temp_display_left"
+                android:text="63°"
+                android:textSize="36sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginVertical="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/temp_down_left"
+                android:text="−"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#F44336"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:elevation="4dp" />
+        </LinearLayout>
+
+        <!-- 오른쪽 온도 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/temp_up_right"
+                android:text="+"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:elevation="4dp" />
+
+            <TextView
+                android:id="@+id/temp_display_right"
+                android:text="63°"
+                android:textSize="36sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginVertical="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/temp_down_right"
+                android:text="−"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#F44336"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:elevation="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 단위 선택 Spinner -->
+    <Spinner
+        android:id="@+id/unit_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FFFFFF"
+        android:popupBackground="#333333" />
+
+    <!-- FAN 상태 표시 -->
+    <TextView
+        android:id="@+id/fan_display"
+        android:text="FAN: OFF"
+        android:textSize="24sp"
+        android:textColor="#BBDEFB"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- 🌬 FAN 버튼 + 회전 아이콘 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/fan_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Fan Mode" />
+
+        <ImageView
+            android:id="@+id/fan_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@drawable/fan_icon_background"
+            android:padding="6dp"
+            android:contentDescription="Fan icon"
+            android:src="@drawable/fan_off" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HVAC Simulator</string>
+    <string-array name="temp_units">
+        <item>Fahrenheit</item>
+        <item>Celsius</item>
+    </string-array>
+</resources>
