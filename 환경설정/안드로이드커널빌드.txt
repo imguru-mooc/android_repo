@@ -1,0 +1,53 @@
+안드로이드 커널 디렉토리 생성 및 이동
+$ mkdir -p ~/android-kernel
+$ cd ~/android-kernel
+
+커널 다운로드 
+$ repo init -u https://android.googlesource.com/kernel/manifest -b common-android14-6.1
+$ repo sync -j$(nproc)
+
+커널 빌드
+$ tools/bazel run //common:kernel_x86_64_dist
+$ tools/bazel run //common-modules/virtual-device:virtual_device_x86_64_dist
+
+커널 이미지 및 모듈 파일 복사
+
+$ cd ~/source/kernel/prebuilts/6.1/
+$ mv x86_64 x86_64-orig
+$ mkdir x86_64
+$ cd x86_64
+$ cp ~/android-kernel/out/kernel_x86_64/dist/bzImage  kernel-6.1
+$ cp ~/android-kernel/out/kernel_x86_64/dist/*.ko .
+
+$ cd ~/source/kernel/prebuilts/common-modules/virtual-device/6.1/
+$ mv x86-64 x86-64-orig
+$ mkdir x86-64
+$ cd x86-64
+$ cp ~/android-kernel/out/virtual_device_x86_64/dist/*.ko .
+
+안드로이드 리빌드
+$ cd ~/source
+$ source build/envsetup.sh
+$ lunch  후  78번 선택
+$ m -j$(nproc)
+$ m emu_img_zip
+$ ls ~/source/out/target/product/emulator_car_x86_64
+
+winscp를 이용한 이미디 다운로드
+$ sdk-repo-linux-system-images-eng.worker.zip 파일 windows C:\aosp14 디렉토리로 다운로드 후 압축 해제
+
+아래 bat 파일 수정 후 실행
+@echo off
+set EMULATOR=%LOCALAPPDATA%\Android\Sdk\emulator\emulator.exe
+set AVD_NAME=Automotive_1408p_landscape
+set IMAGES=C:\aosp14\x86_64
+
+%EMULATOR% ^
+-sysdir %IMAGES% ^
+-avd %AVD_NAME% ^
+-writable-system ^
+-no-snapshot-load ^
+-no-snapshot-save ^
+-verbose ^
+-show-kernel ^
+-qemu   -append "androidboot.selinux=permissive"

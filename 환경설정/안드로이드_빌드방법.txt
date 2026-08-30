@@ -1,0 +1,26 @@
+안드로이드 빌드 방법
+
+안드로이드 소스 디렉토리로 이동
+$ cd android
+
+swap 메모리 설정
+$ sudo fallocate -l 30G ~/swapfile
+$ sudo chmod 600 ~/swapfile
+$ sudo mkswap ~/swapfile
+$ sudo swapon ~/swapfile
+$ free -h
+
+안드로이드 빌드 
+$ source build/envsetup.sh
+$ lunch sdk_car_x86_64-userdebug
+$ python3 $ANDROID_BUILD_TOP/development/vndk/tools/header-checker/utils/create_reference_dumps.py -l libcrypto
+$ make -j$(nproc)
+
+이미지 압축 파일 만들기
+$ m emu_img_zip
+
+빌드 확인
+$ ls out/target/product/emulator_car_x86_64
+system.img  userdata.img  kernel-ranchu ramdisk.img vendor.img sdk-repo-linux-system-images-eng.root.zip
+
+
