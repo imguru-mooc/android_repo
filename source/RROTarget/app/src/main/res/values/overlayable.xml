@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <overlayable name="RROTargetTheme">
+        <policy type="public">
+            <item type="string" name="hello_world" />
+            <item type="drawable" name="background_shape" />
+            <item type="drawable" name="ic_target_icon" />
+        </policy>
+    </overlayable>
+</resources>
